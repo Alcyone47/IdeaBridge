@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import './App.css'
 
-function App() {
 
+function App(){
   return (
     <>
-      <h1>IdeaBridge</h1>
+      <h1 className="text-3xl font-bold">
+        <span className="text-blue-500">Idea</span>
+        <span className="text-black">Bridge</span>
+      </h1>
     </>
   )
 }

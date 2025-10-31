@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import './App.css'
+import LandingPage from './pages/landingPage';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
-
+function App(){
   return (
-    <>
-      <h1>IdeaBridge</h1>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<LandingPage/>}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

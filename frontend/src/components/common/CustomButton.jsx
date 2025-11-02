@@ -11,7 +11,7 @@ const CustomButton = ({
   
   const styles = 
   variant === "filled"
-    ? "bg-white text-black hover:bg-gray-200"
+    ? "bg-white text-black hover:bg-white"
     : "bg-transparent text-white hover:scale-103 transition-transform duration-200 font-semibold";
   
   return (

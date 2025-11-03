@@ -21,7 +21,6 @@ const SignupPage = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    console.log("Registering:", formData);
     try {
       const res = await axios.post("http://localhost:5000/api/users/register", formData);
       setSuccess("Signup successful! Redirecting to login...");
@@ -37,7 +36,7 @@ const SignupPage = () => {
     <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-4">
       <img src={images.logo} alt="Logo" className="h-10 mb-6" />
       <h2 className="text-3xl font-bold mb-4">Create Your Account</h2>
-      <form onSubmit={handleSignup} className="bg-black p-8 rounded-2xl shadow-lg w-full max-w-md">
+      <form onSubmit={handleSignup} className="bg-black p-8 pt-4 rounded-2xl shadow-lg w-full max-w-md">
         {success && <p className="text-green-500 text-sm mb-3">{success}</p>}
         <div className="mb-5">
           <label className="block mb-2 text-sm text-gray-400">Full Name</label>

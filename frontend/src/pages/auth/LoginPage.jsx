@@ -14,16 +14,14 @@ const LoginPage = () => {
   e.preventDefault();
   try {
     const res = await axios.post("http://localhost:5000/api/users/login", { email, password });
-    console.log(res.data);
     const { token, role, name, email: userEmail } = res.data;
+    const user = { role, name, email: userEmail };
     localStorage.setItem("token", token);
-    localStorage.setItem("role", role);
-    localStorage.setItem("email", userEmail);
-    localStorage.setItem("name", name);
+    localStorage.setItem("user", JSON.stringify(user));
     setError("");
     setTimeout(() => {
       if (role === "entrepreneur") {
-        navigate("/dashboard/founder");
+        navigate("/dashboard/entrepreneur");
       } else if (role === "investor") {
         navigate("/dashboard/investor");
       }

@@ -4,8 +4,9 @@ import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
 import Home from './pages/Home';
 import InvestorDashboard from './pages/dashboards/InvestorDashboard';
-import FounderDashboard from './pages/dashboards/FounderDashboard';
+import EntrepreneurDashboard from './pages/dashboards/FounderDashboard';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from './routes/ProtectedRoutes';
 
 function App(){
   return (
@@ -14,8 +15,16 @@ function App(){
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/login' element={<LoginPage/>}/>
         <Route path='/signup' element={<SignupPage/>}/>
-        <Route path='/dashboard/investor' element={<InvestorDashboard />} />
-        <Route path='/dashboard/founder' element={<FounderDashboard />} />
+        <Route path="/dashboard/entrepreneur" element={
+          <ProtectedRoute allowedRoles={["entrepreneur"]}>
+            <EntrepreneurDashboard />
+          </ProtectedRoute>
+        }/>
+        <Route path="/dashboard/investor" element={
+          <ProtectedRoute allowedRoles={["investor"]}>
+            <InvestorDashboard />
+          </ProtectedRoute>
+        }/>
         <Route path='/home' element={<Home/>}/>
       </Routes>
     </BrowserRouter>

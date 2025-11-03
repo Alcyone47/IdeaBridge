@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import CustomButton from "../components/common/CustomButton";
 import { images } from "../assets";
 
@@ -9,24 +10,34 @@ const SignupPage = () => {
     name: "",
     email: "",
     password: "",
-    role: "startupFounder",
+    role: "entrepreneur",
   });
+
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    console.log("Registering:", formData);
+    try {
+      const res = await axios.post("http://localhost:5000/api/users/register", formData);
+      setSuccess("Signup successful! Redirecting to login...");
+      setError("");
+      setTimeout(() => navigate("/login"), 5000);
+    } catch (err) {
+      setError(err.response?.data?.message || "Signup failed. Please try again.");
+      setSuccess("");
+    }
   };
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-4">
       <img src={images.logo} alt="Logo" className="h-10 mb-6" />
-
       <h2 className="text-3xl font-bold mb-4">Create Your Account</h2>
-
-      <form onSubmit={handleSignup} className="bg-black p-8 rounded-2xl shadow-lg w-full max-w-md">
+      <form onSubmit={handleSignup} className="bg-black p-8 pt-4 rounded-2xl shadow-lg w-full max-w-md">
+        {success && <p className="text-green-500 text-sm mb-3">{success}</p>}
         <div className="mb-5">
           <label className="block mb-2 text-sm text-gray-400">Full Name</label>
           <input
@@ -34,10 +45,9 @@ const SignupPage = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+            className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
         </div>
-
         <div className="mb-5">
           <label className="block mb-2 text-sm text-gray-400">Email</label>
           <input
@@ -46,10 +56,9 @@ const SignupPage = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+            className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
         </div>
-
         <div className="mb-5">
           <label className="block mb-2 text-sm text-gray-400">Password</label>
           <input
@@ -58,31 +67,29 @@ const SignupPage = () => {
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+            className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
         </div>
-
         <div className="mb-6">
           <label className="block mb-2 text-sm text-gray-400">I am a...</label>
           <select
             name="role"
             value={formData.role}
             onChange={handleChange}
-            className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="startupFounder">Startup Founder</option>
+            className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+            <option value="enterpreneur">Startup Founder</option>
             <option value="investor">Investor</option>
           </select>
         </div>
-
         <CustomButton text="Sign Up" variant="filled" className="w-full font-semibold" />
-
-        <p className="text-gray-400 text-center mt-6">
+        {error && <p className="text-red-500 text-sm mt-3">{error}</p>}
+        <p className="text-gray-400 text-center mt-4">
           Already have an account?{" "}
           <span
             onClick={() => navigate("/login")}
             className="text-blue-400 cursor-pointer hover:underline"
-          >
+            >
             Log in
           </span>
         </p>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import CustomButton from "../components/common/CustomButton";
-import { images } from "../assets";
+import CustomButton from "../../components/common/CustomButton";
+import { images } from "../../assets";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -11,20 +11,27 @@ const LoginPage = () => {
   const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:5000/api/users/login", { email, password });
-      const { token, user } = res.data;
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-      setError("");
-      setTimeout(() => {
-        navigate("/home");
-      }, 1000);
-    } catch (err) {
-      setError(err.response?.data?.message || "Invalid credentials");
-    }
-  };
+  e.preventDefault();
+  try {
+    const res = await axios.post("http://localhost:5000/api/users/login", { email, password });
+    console.log(res.data);
+    const { token, role, name, email: userEmail } = res.data;
+    localStorage.setItem("token", token);
+    localStorage.setItem("role", role);
+    localStorage.setItem("email", userEmail);
+    localStorage.setItem("name", name);
+    setError("");
+    setTimeout(() => {
+      if (role === "entrepreneur") {
+        navigate("/dashboard/founder");
+      } else if (role === "investor") {
+        navigate("/dashboard/investor");
+      }
+    }, 1000);
+  } catch (err) {
+    setError(err.response?.data?.message || "Invalid credentials");
+  }
+};
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-4">

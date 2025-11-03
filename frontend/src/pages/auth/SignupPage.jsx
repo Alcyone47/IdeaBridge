@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import CustomButton from "../components/common/CustomButton";
-import { images } from "../assets";
+import CustomButton from "../../components/common/CustomButton";
+import { images } from "../../assets";
 
 const SignupPage = () => {
   const navigate = useNavigate();

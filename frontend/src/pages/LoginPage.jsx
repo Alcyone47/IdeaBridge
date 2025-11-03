@@ -34,7 +34,6 @@ const LoginPage = () => {
         onSubmit={handleLogin}
         className="bg-black p-8 rounded-2xl shadow-lg w-full max-w-md"
       >
-        {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
         <div className="mb-6">
           <label className="block mb-2 text-sm text-gray-400">Email</label>
           <input
@@ -54,9 +53,10 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
             className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-blue-500"
-          />
+            />
         </div>
 
+          {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
         <CustomButton text="Login" variant="filled" className="w-full font-semibold mt-8" />
 
         <p className="text-gray-400 text-center mt-6">

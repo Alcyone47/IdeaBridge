@@ -7,17 +7,17 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="bg-black flex flex-row py-4 px-8">
-        <div className='flex flex-1'>
-          <img src={images.logo} alt="" className='h-12'/>
+        <div className='flex flex-1 items-center'>
+          <img src={images.logo} alt="" className='h-8 w-auto pl-2'/>
         </div>
         <div className='text-white flex flex-1 items-center justify-center'>
-          <span className="px-6">Product</span>
-          <span className="px-6">Company</span>
-          <span className="px-6">Features</span>
-          <span className="px-6">Marketplace</span>
+          <CustomButton text="Product" variant="unfilled"/>
+          <CustomButton text="Company" variant="unfilled"/>
+          <CustomButton text="Features" variant="unfilled"/>
+          <CustomButton text="Marketplace" variant="unfilled"/>
         </div>
         <div className='text-white flex flex-1 items-center justify-end'>
-          <CustomButton text="Sign In" variant="unfilled" className="mr-4" icon={images.rightArrow}/>
+          <CustomButton text="Sign In" variant="unfilled" className="" icon={images.rightArrow}/>
         </div>
       </header>
       <main className="flex-1 flex-col items-center justify-center bg-black flex px-4 pb-12">

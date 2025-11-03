@@ -1,9 +1,9 @@
 import React from 'react'
 
-const FounderDashboard = () => {
+const EntrepreneurDashboard = () => {
   return (
-    <div>FounderDashboard</div>
+    <div>EntrepreneurDashboard</div>
   )
 }
 
-export default FounderDashboard
+export default EntrepreneurDashboard

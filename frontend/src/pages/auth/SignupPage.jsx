@@ -78,7 +78,7 @@ const SignupPage = () => {
             onChange={handleChange}
             className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-            <option value="enterpreneur">Startup Founder</option>
+            <option value="entrepreneur">Startup Founder</option>
             <option value="investor">Investor</option>
           </select>
         </div>

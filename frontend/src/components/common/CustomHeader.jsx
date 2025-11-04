@@ -37,22 +37,22 @@ const CustomHeader = () => {
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="flex items-center gap-2 text-blue-400 font-medium hover:text-blue-400 transition hover:scale-105"
+              className="flex items-center gap-2 text-blue-400 font-medium hover:text-blue-400 transition hover:scale-105 hover:cursor-pointer"
             >
               {user.name}
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 mt-3 w-40 bg-black outline-amber-50 outline-2 py-0 rounded-lg shadow-lg z-10">
+              <div className="absolute right-0 mt-3 w-40 bg-black outline-gray-600 outline-1 py-0 rounded-lg shadow-lg z-10">
                 <button
                   onClick={handleDashboard}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 hover:cursor-pointer"
                 >
                   Dashboard
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="block w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-700"
+                  className="block w-full text-left px-4 py-2 text-sm hover:text-red-400 hover:bg-gray-800 hover:cursor-pointer"
                 >
                   Logout
                 </button>

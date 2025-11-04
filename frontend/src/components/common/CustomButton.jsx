@@ -11,12 +11,12 @@ const CustomButton = ({
   
   const styles = 
   variant === "filled"
-    ? "bg-white text-black hover:bg-white"
+    ? "text-black"
     : "bg-transparent text-white hover:scale-103 transition-transform duration-200 font-semibold";
   
   return (
     <button onClick={onClick} className={`${base} ${styles} ${className}`}>
-      {icon && iconPosition === "left" && <img src={icon} alt="" className="h-5 w-5" />}
+      {icon && iconPosition === "left" && <img src={icon} alt="" className="h-5 w-5 bg" />}
       <span>{text}</span>
       {icon && iconPosition === "right" && <img src={icon} alt="" className="h-5 w-5" />}
     </button>

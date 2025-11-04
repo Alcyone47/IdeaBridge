@@ -20,9 +20,9 @@ const CustomHeader = () => {
   };
 
   return (
-    <header className="bg-black flex flex-row py-4 px-8 relative">
+    <header className="bg-black flex flex-row py-4 px-10 relative">
       <div className='flex flex-1 items-center'>
-        <img src={images.logo} alt="logo" className='h-8 w-auto pl-2 cursor-pointer' onClick={() => navigate('/')}/>
+        <img src={images.logo} alt="logo" className='h-8 w-auto cursor-pointer' onClick={() => navigate('/')}/>
       </div>
 
       <div className='text-white flex flex-1 items-center justify-center gap-4'>
@@ -37,25 +37,18 @@ const CustomHeader = () => {
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="flex items-center gap-2 text-gray-200 font-medium hover:text-blue-400 transition"
+              className="flex items-center gap-2 text-blue-400 font-medium hover:text-blue-400 transition hover:scale-105"
             >
               {user.name}
-              <span className="text-xs">▼</span>
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 mt-3 w-40 bg-gray-800 rounded-lg shadow-lg py-2 z-10">
+              <div className="absolute right-0 mt-3 w-40 bg-black outline-amber-50 outline-2 py-0 rounded-lg shadow-lg z-10">
                 <button
                   onClick={handleDashboard}
                   className="block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
                 >
                   Dashboard
-                </button>
-                <button
-                  onClick={() => navigate('/profile')}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
-                >
-                  Profile
                 </button>
                 <button
                   onClick={handleLogout}

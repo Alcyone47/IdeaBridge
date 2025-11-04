@@ -16,7 +16,7 @@ const EntrepreneurDashboard = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get("http://localhost:5000/api/ideas/myideas", {
-          headers: { Authorization: ` ${token}` },
+          headers: { Authorization: `Bearer ${token}` },
         });
         setIdeas(res.data);
       } catch (err) {

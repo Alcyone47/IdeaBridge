@@ -1,5 +1,14 @@
 import Idea from '../models/ideaModel.js';
 
+export const getMyIdeas = async (req, res) => {
+  try {
+    const ideas = await Idea.find({ user: req.user._id });
+    res.json(ideas);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 export const createIdea = async(req, res) => {
 
   try {

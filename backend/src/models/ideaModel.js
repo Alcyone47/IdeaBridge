@@ -15,7 +15,8 @@ const ideaSchema = new mongoose.Schema(
     teamSize: {type: Number, default: 1},
     foundedYear: Number,
     location: String,
-    pitchDeckUrl: String,
+    logo: { type: String, default: "" },
+    pitchDeck: { type: String, default: "" },
   },
   {timestamps: true}
 );

@@ -2,7 +2,7 @@ import Idea from '../models/ideaModel.js';
 
 export const getMyIdeas = async (req, res) => {
   try {
-    const ideas = await Idea.find({ user: req.user._id });
+    const ideas = await Idea.find({ owner: req.user._id });
     res.json(ideas);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
@@ -28,7 +28,7 @@ export const createIdea = async(req, res) => {
       pitchDeck
     } = req.body;   
 
-    const founderID = req.user.id;
+    const founderID = req.user._id;
 
     const idea = new Idea ({
       owner: founderID,
@@ -50,6 +50,6 @@ export const createIdea = async(req, res) => {
     res.status(201).json({message : "Successful"})
   }
   catch (err) {
-    res.status(500),json({message : "Server error", error : err.message});
+    res.status(500).json({message : "Server error", error : err.message});
   }
 }

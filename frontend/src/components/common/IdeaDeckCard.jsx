@@ -58,7 +58,7 @@ const IdeaDeckCard = ({ idea, onView, onEdit }) => {
           className="flex-1 ml-2 py-2 border border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition duration-300"
         >
           Edit
-        </button>
+        </button> 
       </div>
     </div>
   );

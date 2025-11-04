@@ -4,7 +4,7 @@ import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
 import Home from './pages/Home';
 import InvestorDashboard from './pages/dashboards/InvestorDashboard';
-import EntrepreneurDashboard from './pages/dashboards/FounderDashboard';
+import EntrepreneurDashboard from './pages/dashboards/EntrepreneurDashboard';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from './routes/ProtectedRoutes';
 

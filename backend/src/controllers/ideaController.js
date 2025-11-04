@@ -1,0 +1,46 @@
+import Idea from '../models/ideaModel.js';
+
+export const createIdea = async(req, res) => {
+
+  try {
+    const{
+      name, 
+      website, 
+      tagline, 
+      description, 
+      stage, 
+      fundingStatus, 
+      fundingGoal, 
+      fundingRaised,
+      teamSize, 
+      foundedYear, 
+      location,
+      logo,
+      pitchDeck
+    } = req.body;   
+
+    const founderID = req.user.id;
+
+    const idea = new Idea ({
+      owner: founderID,
+      name, 
+      website, 
+      tagline, 
+      description, 
+      stage, 
+      fundingStatus, 
+      fundingGoal, 
+      fundingRaised,
+      teamSize, 
+      foundedYear, 
+      location,
+      logo,
+      pitchDeck 
+    })
+    await idea.save();
+    res.status(201).json({message : "Successful"})
+  }
+  catch (err) {
+    res.status(500),json({message : "Server error", error : err.message});
+  }
+}

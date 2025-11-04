@@ -7,7 +7,7 @@ const ideaSchema = new mongoose.Schema(
     name: {type: String, required: true},
     website: String,
     tagline: String,
-    description: {type: String, required: True},
+    description: {type: String, required: true},
     stage: {type: String, enum:["Idea", "MVP", "Growth", "Scaling"]},
     fundingStatus: {type: String, enum:["Seeking", "Closed"], default: "Seeking"},
     fundingGoal: {type: Number, default: 0},

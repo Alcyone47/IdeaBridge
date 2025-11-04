@@ -22,7 +22,7 @@ const LandingPage = () => {
           <div className="flex justify-center">
             {!user ? (
               <>
-              <Button onClick={() => navigate('/signup')} text="Get Started" variant="filled" className="font-semibold"/>
+              <Button onClick={() => navigate('/signup')} text="Get Started" variant="filled" className="font-semibold bg-white"/>
               <Button text="Learn More" variant="unfilled" className="ml-4" icon={images.rightArrow}/>
               </>
             ) :

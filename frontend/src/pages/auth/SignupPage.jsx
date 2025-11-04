@@ -82,7 +82,7 @@ const SignupPage = () => {
             <option value="investor">Investor</option>
           </select>
         </div>
-        <CustomButton text="Sign Up" variant="filled" className="w-full font-semibold" />
+        <CustomButton text="Sign Up" variant="filled" className="w-full font-semibold bg-white" />
         {error && <p className="text-red-500 text-sm mt-3">{error}</p>}
         <p className="text-gray-400 text-center mt-4">
           Already have an account?{" "}

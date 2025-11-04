@@ -62,7 +62,7 @@ const LoginPage = () => {
         </div>
 
           {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
-        <CustomButton text="Login" variant="filled" className="w-full font-semibold mt-8" />
+        <CustomButton text="Login" variant="filled" className="w-full font-semibold mt-8 bg-white" />
 
         <p className="text-gray-400 text-center mt-6">
           Don’t have an account?{" "}

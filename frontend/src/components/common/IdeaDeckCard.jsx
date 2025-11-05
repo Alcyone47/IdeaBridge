@@ -1,14 +1,15 @@
 import React from "react";
 
 const IdeaDeckCard = ({ idea, onView, onEdit }) => {
+  const hasLogo = idea.logo && idea.logo.trim() !== "";
   return (
     <div className="bg-black border border-gray-600 text-white rounded-2xl shadow-md p-8 flex flex-col items-center 
                     hover:border-blue-400 hover:shadow-blue-500/30 hover:scale-101 transition-all duration-200">
       <div className="w-24 h-24 mb-5">
-        {idea.logo ? (
+        {hasLogo ? (
           <img
             src={idea.logo}
-            alt="Startup Logo"
+            alt={`${idea.name} Logo`}
             className="w-full h-full object-cover rounded-full border border-gray-700"
           />
         ) : (
@@ -49,13 +50,13 @@ const IdeaDeckCard = ({ idea, onView, onEdit }) => {
       <div className="flex justify-between w-full mt-auto">
         <button
           onClick={() => onView(idea._id)}
-          className="flex-1 mr-2 py-2 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition duration-300"
+          className="flex-1 mr-2 py-2 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition duration-300 hover:cursor-pointer"
         >
           View
         </button>
         <button
           onClick={() => onEdit(idea._id)}
-          className="flex-1 ml-2 py-2 border border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition duration-300"
+          className="flex-1 ml-2 py-2 border border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition duration-300 hover:cursor-pointer"
         >
           Edit
         </button> 

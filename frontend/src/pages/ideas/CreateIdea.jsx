@@ -6,6 +6,8 @@ import CustomHeader from "../../components/common/CustomHeader";
 import { images } from "../../assets";
 
 const CreateIdea = () => {
+  const [logo, setLogo] = useState(null);
+  const [pitchDeck, setPitchDeck] = useState(null);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",
@@ -44,14 +46,15 @@ const CreateIdea = () => {
 
     try {
       const token = localStorage.getItem("token");
-
+      if (logo) data.append("logo", logo);
+      if (pitchDeck) data.append("pitchDeck", pitchDeck);
       const res = await axios.post(
         "http://localhost:5000/api/ideas/create",
         formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -76,7 +79,6 @@ const CreateIdea = () => {
 
       <main className="flex-1 flex flex-col items-center px-6 py-10">
         <div className="w-full max-w-3xl">
-          {/* Step indicator */}
           <div className="flex justify-between mb-10">
             {["Details", "Uploads", "Confirm"].map((label, index) => (
               <div key={label} className="flex flex-col items-center w-1/3">

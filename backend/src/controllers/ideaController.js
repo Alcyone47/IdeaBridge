@@ -43,24 +43,24 @@ export const createIdea = async (req, res) => {
       const logoFile = req.files.logo[0];
       const { data, error } = await supabase.storage
         .from("logos")
-        .upload(`logos/${Date.now()}_${logoFile.originalname}`, logoFile.buffer, {
+        .upload(`${Date.now()}_${logoFile.originalname}`, logoFile.buffer, {
           contentType: logoFile.mimetype,
         });
 
       if (error) throw error;
-      logoUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/${data.path}`;
+      logoUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/logos/${data.path}`;
     }
 
     if (req.files?.pitchDeck) {
       const pitchFile = req.files.pitchDeck[0];
       const { data, error } = await supabase.storage
         .from("pitchdecks")
-        .upload(`pitchdecks/${Date.now()}_${pitchFile.originalname}`, pitchFile.buffer, {
+        .upload(`${Date.now()}_${pitchFile.originalname}`, pitchFile.buffer, {
           contentType: pitchFile.mimetype,
         });
 
       if (error) throw error;
-      pitchDeckUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/${data.path}`;
+      pitchDeckUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/pitchdecks/${data.path}`;
     }
 
     const idea = new Idea({

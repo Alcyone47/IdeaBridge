@@ -1,4 +1,5 @@
 import Idea from '../models/ideaModel.js';
+import supabase from "../config/supabaseClient.js";
 
 export const getMyIdeas = async (req, res) => {
   try {
@@ -12,7 +13,6 @@ export const getMyIdeas = async (req, res) => {
 export const createIdea = async (req, res) => {
   try {
     console.log("Incoming idea data:", req.body);
-
     const {
       name,
       website,
@@ -36,6 +36,33 @@ export const createIdea = async (req, res) => {
       return res.status(401).json({ message: "User not authenticated" });
     }
 
+    let logoUrl = "";
+    let pitchDeckUrl = "";
+
+    if (req.files?.logo) {
+      const logoFile = req.files.logo[0];
+      const { data, error } = await supabase.storage
+        .from("logos")
+        .upload(`logos/${Date.now()}_${logoFile.originalname}`, logoFile.buffer, {
+          contentType: logoFile.mimetype,
+        });
+
+      if (error) throw error;
+      logoUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/${data.path}`;
+    }
+
+    if (req.files?.pitchDeck) {
+      const pitchFile = req.files.pitchDeck[0];
+      const { data, error } = await supabase.storage
+        .from("pitchdecks")
+        .upload(`pitchdecks/${Date.now()}_${pitchFile.originalname}`, pitchFile.buffer, {
+          contentType: pitchFile.mimetype,
+        });
+
+      if (error) throw error;
+      pitchDeckUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/${data.path}`;
+    }
+
     const idea = new Idea({
       owner: founderID,
       name,
@@ -49,8 +76,8 @@ export const createIdea = async (req, res) => {
       teamSize,
       foundedYear,
       location,
-      logo: "",
-      pitchDeck: "",
+      logo: logoUrl,
+      pitchDeck: pitchDeckUrl,
     });
 
     await idea.save();

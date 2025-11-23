@@ -8,16 +8,31 @@ import ideaRoutes from './routes/ideaRoutes.js';
 dotenv.config();
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://ideabridge-in.vercel.app/",
+];
+  
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Connect DB
 connectDB();
 
+
 // Routes
 app.get('/', (req, res) => {
   res.send('IdeaBridge API is running...');
+});
+
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" });
 });
 
 app.use('/api/users', userRoutes);

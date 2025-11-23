@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CustomButton from "../../components/common/CustomButton";
 import { images } from "../../assets";
+import api from "../../api/axios";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -13,7 +14,8 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
   e.preventDefault();
   try {
-    const res = await axios.post("http://localhost:5000/api/users/login", { email, password });
+    /* const res = await axios.post("http://localhost:5000/api/users/login", { email, password }); */
+    const res = await api.post("/api/users/login", { email, password });
     const { token, role, name, email: userEmail } = res.data;
     const user = { role, name, email: userEmail };
     localStorage.setItem("token", token);

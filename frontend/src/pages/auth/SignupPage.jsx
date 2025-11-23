@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CustomButton from "../../components/common/CustomButton";
 import { images } from "../../assets";
+import api from "../../api/axios"
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -22,7 +23,8 @@ const SignupPage = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/users/register", formData);
+      const res = await api.post("api/users/register", formData)
+      /* const res = await axios.post("http://localhost:5000/api/users/register", formData); */
       setSuccess("Signup successful! Redirecting to login...");
       setError("");
       setTimeout(() => navigate("/login"), 5000);

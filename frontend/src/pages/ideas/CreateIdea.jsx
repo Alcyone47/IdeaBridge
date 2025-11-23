@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/common/CustomButton";
 import CustomHeader from "../../components/common/CustomHeader";
 import { images } from "../../assets";
+import api from "../../api/axios";
 
 const CreateIdea = () => {
   const [logo, setLogo] = useState(null);
@@ -48,7 +49,7 @@ const CreateIdea = () => {
       const token = localStorage.getItem("token");
       if (logo) data.append("logo", logo);
       if (pitchDeck) data.append("pitchDeck", pitchDeck);
-      const res = await axios.post(
+      /* const res = await axios.post(
         "http://localhost:5000/api/ideas/create",
         formData,
         {
@@ -57,7 +58,18 @@ const CreateIdea = () => {
             "Content-Type": "multipart/form-data",
           },
         }
-      );
+      ); */
+
+      const res = await api.post(
+        "/api/ideas/create",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          }
+        }
+      )
 
       setSuccess("Idea created successfully!");
       console.log("Created:", res.data);

@@ -4,6 +4,7 @@ import CustomHeader from "../../components/common/CustomHeader";
 import IdeaDeckCard from "../../components/common/IdeaDeckCard";
 import { useNavigate } from "react-router-dom";
 import { images } from "../../assets";
+import api from "../../api/axios";
 
 const EntrepreneurDashboard = () => {
   const [ideas, setIdeas] = useState([]);
@@ -15,9 +16,12 @@ const EntrepreneurDashboard = () => {
     const fetchIdeas = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/api/ideas/myideas", {
+        const res = await api.get("api/ideas/myideas", {
+          headers: { Authorization: `Bearer ${token}`}
+        })
+        /* const res = await axios.get("http://localhost:5000/api/ideas/myideas", {
           headers: { Authorization: `Bearer ${token}` },
-        });
+        }); */
         setIdeas(res.data);
       } catch (err) {
         console.error("Error fetching ideas:", err);

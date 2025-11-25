@@ -1,7 +1,8 @@
 import express from 'express';
 import protect from '../middlewares/authMiddleware.js';
-import { createIdea, getMyIdeas } from '../controllers/ideaController.js';
+import { createIdea, getAllIdeas, getMyIdeas } from '../controllers/ideaController.js';
 import upload from '../middlewares/uploadMiddleware.js';
+import verifyInvestor from '../middlewares/verifyInvestorMiddleware.js';
 
 const router = express.Router();
 
@@ -13,5 +14,7 @@ router.post("/create", protect, upload.fields([
   ]), createIdea);
 
 router.post('/create', protect, createIdea);
+
+router.get('/all', protect, verifyInvestor, getAllIdeas);
 
 export default router;

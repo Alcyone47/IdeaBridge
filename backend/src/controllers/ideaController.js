@@ -89,3 +89,13 @@ export const createIdea = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
+
+export const getAllIdeas = async (req, res) => {
+  try {
+    const ideas = await Idea.find({});
+    res.json(ideas);
+  }
+  catch (error){
+    res.status(500).json({ message: 'Server error' });
+  }
+}
